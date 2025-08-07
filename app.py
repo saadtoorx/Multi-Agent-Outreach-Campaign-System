@@ -104,7 +104,7 @@ def main():
         st.markdown("### 🧠 Tools Used")
         st.markdown("- File Reader\n- Web Search\n- Sentiment Analysis")
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns([1,3,1])
     with col2:
         st.markdown("### 📝 Campaign Details")
         lead_name = st.text_input("Lead/Target Company Name", "Deeplearning.ai", help="Target company you're reaching out to")
