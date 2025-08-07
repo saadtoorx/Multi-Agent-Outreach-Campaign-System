@@ -2,7 +2,7 @@
 title: "Multi-Agent Outreach Campaign System"
 emoji: "📇"
 colorFrom: "indigo"
-colorTo: "cyan"
+colorTo: "red"
 sdk: "streamlit"
 sdk_version: "1.48.0"
 app_file: "app.py"
