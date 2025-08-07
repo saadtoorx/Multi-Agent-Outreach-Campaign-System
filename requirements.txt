@@ -1,0 +1,6 @@
+streamlit
+crewai==0.150.0
+crewai-tools==0.59.0
+chromadb==0.5.23
+pydantic
+openai
