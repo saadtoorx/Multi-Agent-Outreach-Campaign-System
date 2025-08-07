@@ -84,7 +84,7 @@ def run_crew(your_company, lead_name, industry, key_decision_maker, position, mi
 
 
 def main():
-    st.markdown('<h1 class="main-header"📇 Multi-Agent Customer Campaign Automation</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">📇 Multi-Agent Customer Campaign Automation</h1>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">Leverage multi-agent AI to identify, profile, and engage high-value leads</p>', unsafe_allow_html=True)
 
     with st.sidebar:
@@ -104,40 +104,39 @@ def main():
         st.markdown("### 🧠 Tools Used")
         st.markdown("- File Reader\n- Web Search\n- Sentiment Analysis")
 
-    col1, col2 = st.columns(2)
-    with col1:
+    col1, col2, col3 = st.columns(3)
+    with col2:
         st.markdown("### 📝 Campaign Details")
         lead_name = st.text_input("Lead/Target Company Name", "Deeplearning.ai", help="Target company you're reaching out to")
         key_decision_maker = st.text_input("Key Decision Maker", "Andrew Ng", help="Name of the person to contact")
         milestone = st.text_input("Recent Milestone", "recently launched a new AI course", help="A recent event related to the company")
-    with col2:
         industry = st.text_input("Industry", "AI Education", help="Industry of the target company")
         position = st.text_input("Position", "CEO", help="Job title of the decision maker")
 
-    if st.button("🚀 Run Outreach Campaign", use_container_width=True):
-        if not all([company, lead_name, industry, key_decision_maker, position, milestone]):
-            st.warning("Please fill in all fields before running the campaign.")
-        else:
-            with st.spinner("Running CrewAI agents..."):
-                try:
-                    result = run_crew(company, lead_name, industry, key_decision_maker, position, milestone)
-                    # Safely extract text
-                    if hasattr(result, 'final_output'):
-                        result_text = result.final_output
-                    elif isinstance(result, str):
-                        result_text = result
-                    else:
-                        result_text = str(result)
-                    
-                    st.markdown('<div class="result-container">', unsafe_allow_html=True)
-                    st.markdown("### 🎯 Campaign Result")
-                    st.code(result_text)
-                    st.download_button("📥 Download Result", result_text, file_name="campaign_result.txt")
-                    st.markdown('</div>', unsafe_allow_html=True)
+        if st.button("🚀 Run Outreach Campaign", use_container_width=True):
+            if not all([company, lead_name, industry, key_decision_maker, position, milestone]):
+                st.warning("Please fill in all fields before running the campaign.")
+            else:
+                with st.spinner("Running CrewAI agents..."):
+                    try:
+                        result = run_crew(company, lead_name, industry, key_decision_maker, position, milestone)
+                        # Safely extract text
+                        if hasattr(result, 'final_output'):
+                            result_text = result.final_output
+                        elif isinstance(result, str):
+                            result_text = result
+                        else:
+                            result_text = str(result)
+                        
+                        st.markdown('<div class="result-container">', unsafe_allow_html=True)
+                        st.markdown("### 🎯 Campaign Result")
+                        st.code(result_text)
+                        st.download_button("📥 Download Result", result_text, file_name="campaign_result.txt")
+                        st.markdown('</div>', unsafe_allow_html=True)
 
-                except Exception as e:
-                    st.error(f"Error: {e}")
-                    st.text(traceback.format_exc())
+                    except Exception as e:
+                        st.error(f"Error: {e}")
+                        st.text(traceback.format_exc())
 
     st.markdown('<h6 class="footer">Developed by Saad Toor | saadtoorx</h6>', unsafe_allow_html=True)
 
